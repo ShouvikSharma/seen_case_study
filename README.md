@@ -27,6 +27,8 @@ cd seen_case_study
 Sourcing the `dependencies.sh` script sets the python virtual env and installs the requirements.txt.
 
 ```bash
+python3 -m venv venv
+source venv/bin/activate
 chmod +x dependencies.sh
 ./dependencies.sh
 ```
