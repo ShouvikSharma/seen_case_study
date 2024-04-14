@@ -21,8 +21,6 @@ for monitor in config["monitors"]:
     datahelpers = DateHelpers(monitor)
     monitor_df = datahelpers.get_sql_data()
 
-    print(monitor_df.shape[0])
-
     ## Send notification base on the communication channel
-    # notification_manager = NotificationManager("user@example.com",communication_channel=monitor['communication_channel'])
-    # notification_manager.send_notification("Monitor Run", f"Monitor {monitor['name']} has run successfully.")
+    notification_manager = NotificationManager(monitor['recipients'],communication_channel=monitor['communication_channel'])
+    notification_manager.send_notification("Monitor Run", f"Monitor {monitor['name']} has created alerts successfully.")

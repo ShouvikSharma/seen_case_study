@@ -2,12 +2,12 @@ monitors:
   - name: "Transaction Monitor"
     owner: "testuser"
     description: "This monitor checks the daily transactions"
-    communication_channel: "email"
+    communication_channel: "jira"
     monitor type: "Transaction"
     schedule: "0 5 * * *"  # Every day at 5:00 AM
     sql_file: "transactions.sql"
     database: 'sample.db'
-    monitor_run_date: '2024-02-08' # This can be left empty or removed if you want to use a default/prompt
+    monitor_run_date: '' # This can be left empty or removed if you want to use a default/prompt
     recipients:
       - "testuser@example.com"
   - name: "Monthly Monitor"
