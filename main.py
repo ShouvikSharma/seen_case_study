@@ -1,16 +1,10 @@
 from utils.helper_tasks import DateHelpers
 from utils.notification_manager import NotificationManager
-import sqlite3
-from collections import namedtuple 
-import pandas as pd
-import os
-from datetime import datetime
 
 datahelpers = DateHelpers(None,'transactions.sql','sample.db')
 
 # Reading the base sql
 monitor_df = datahelpers.get_sql_data()
-
 
 # Usage
 notification_manager = NotificationManager("user@example.com",)
