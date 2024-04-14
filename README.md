@@ -1,38 +1,44 @@
-# seen_case_study
-A repository to document my code for the seen data engineering case study
+# dbt-silver
+
+This repository contains a seen case study project that defines "Silver" data models that are built in Databricks Unity Catalog. Learn more about how we model our data at Avant in [_Medallion Architecture + dbt_](https://avantinc.atlassian.net/wiki/spaces/DL/pages/3132522555/Medallion+Architecture+dbt). Continue reading to learn how to contribute to the `dbt_silver` project.
 
 
+## Setup
 
-### On the YAML File
+These installation instructions assume that you have [Python 3](https://www.python.org/downloads/)
+and [pip](https://pip.pypa.io/en/stable/cli/pip_install/) installed.
 
-## Node (monitor wise)
 
-## Schedule (monitor wise)
+### 1. Clone this repository
 
-## Config file ????
+```bash
+cd && git clone https://github.com/ShouvikSharma/seen_case_study.git
+```
 
-## Retry
+### 2. Go to root of directory
 
-## Timeout
+```bash
+cd seen_case_study
+```
 
-## PII
+### 3. Create a Python virtual environment
 
-## Category
 
--- stale data alert.
+Sourcing the `dependencies.sh` script sets the python virtual env and installs the requirements.txt.
 
-# If data has not refreshed then
+```bash
+chmod +x dependencies.sh
+./dependencies.sh
+```
 
--- Actual job handling
 
-## Drop duplicates
+## Contributing 
 
-## if no instances then what to do
+### 1. Create a git branch
 
--- Get unresolved issues to avoid duplicates.
-
-##  get_jira_issues
-
----  Tests are late
-
-## Incident ticket if the source data has not landed.
+   ```bash
+   git checkout main
+   git fetch origin
+   git pull origin main
+   git checkout -b feature/my-dev-branch
+   ```
