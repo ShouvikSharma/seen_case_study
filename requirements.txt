@@ -1,2 +1,7 @@
 pandas
-sqlite3
+numpy
+scikit-learn
+flask
+flask_restful
+scipy
+sqlalchemy
