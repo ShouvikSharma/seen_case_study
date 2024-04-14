@@ -56,6 +56,16 @@ class TestDatabaseQueries(unittest.TestCase):
         # Expect no results
         self.assertTrue(df.empty)
 
+    def test_null_transactions(self):
+        # Test with a threshold too high to find any transactions
+        df = pd.read_sql_query('''
+            SELECT * FROM transactions
+            WHERE ABS(transaction_amount) = null;
+        ''', self.conn)
+
+        # Expect no results
+        self.assertTrue(df.empty)
+
     @classmethod
     def tearDownClass(cls):
         # Close the database connection
