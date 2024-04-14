@@ -6,13 +6,13 @@ from datetime import datetime
 
 
 class DateHelpers:
-    def __init__(self, monitor_run_date, query_name,database_name):
-        self.monitor_run_date = monitor_run_date  
-        self.query_name = query_name
-        self.database_name = database_name
+    def __init__(self, monitor_config):
+        self.monitor_run_date = monitor_config.get('monitor_run_date')
+        self.query_name = monitor_config.get('sql_file')
+        self.database_name = monitor_config.get('database')
 
     def date_parameter(self):
-        if  self.monitor_run_date == None:
+        if  self.monitor_run_date == '':
             current_datetime = datetime.now()
             self.current_date = current_datetime.strftime('%Y-%m-%d')
             return self.current_date
@@ -32,7 +32,7 @@ class DateHelpers:
             with open(fname, 'r') as f:
                 # Read the SQL query from the file        
                 sql_query = f.read()
-
+                
                 # Format the query with provided parameters
                 # This assumes that you have placeholders in your SQL file like {placeholder_name}
                 formatted_query = sql_query.format(**params)

@@ -8,4 +8,4 @@ transactions
 where
 abs(transaction_amount) > 300
 and 
-    date({date}, '-1 day') =  cast(transaction_date as date)
+    date('{date}', '-1 day') =  date(transaction_date)
