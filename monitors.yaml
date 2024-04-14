@@ -1,0 +1,11 @@
+monitors:
+  - name: "Transaction Monitor"
+    communication type: "JIRA"
+    communication details:
+      - url: "https://jira.com"
+      - username: "jirauser"
+      - password: "jirapassword"
+    monitor type: "Transaction"
+    script: "transaction.py"
+    schedule: "0 0 * * *"
+    sql_file: "transaction.sql"
