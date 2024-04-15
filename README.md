@@ -44,3 +44,24 @@ chmod +x dependencies.sh
    git pull origin main
    git checkout -b feature/my-dev-branch
    ```
+
+# Project Instructions
+
+## Overview
+After setting up the required libraries and functions, this document provides an overview of the code structure and explains how to use the provided scripts and database.
+
+## Directory and File Structure
+
+- **database/**: Contains the sample database file `sample.db` used for storing and retrieving data required for monitoring tasks.
+
+- **scripts/**: Contains SQL files which are executed to fetch data from the database.
+
+- **utils/**: Contains essential utility functions that support the main application logic. This includes:
+  - `helper_tasks.py`: Provides date manipulation and data validation functionalities.
+  - `notification_manager.py`: Manages the sending of notifications based on the monitor outputs.
+
+- **main.py**: The main script that executes the required actions for monitoring tasks. This file orchestrates the data fetching, processing, and notification sending.
+
+- **dependencies.sh**: A shell script file that automates the installation of all required libraries.
+
+- **requirements.txt**: Lists all the Python libraries needed for the project. Use this file to install dependencies via pip.
