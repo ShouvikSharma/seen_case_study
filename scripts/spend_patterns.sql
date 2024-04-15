@@ -26,7 +26,6 @@ select
   account_id,
   month_yt,
   avg_monthly_transaction_amount,
-  moving_avg_monthly_transaction_amount,
   (avg_monthly_transaction_amount - moving_avg_monthly_transaction_amount) / moving_avg_monthly_transaction_amount * 100 AS pct_change
 from 
 moving_avg_cte

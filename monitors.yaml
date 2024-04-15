@@ -6,18 +6,44 @@ monitors:
     monitor type: "Transaction"
     schedule: "0 5 * * *"  # Every day at 5:00 AM
     sql_file: "transactions.sql"
+    prior_notification_time_period: "day"
     database: 'sample.db'
+    columns:
+      - "customer_id"
+      - "account_id"
+      - "transaction_date"
+      - "merchant_name"
     monitor_run_date: '' # This can be left empty or removed if you want to use a default/prompt
     recipients:
       - "testuser@example.com"
   - name: "Monthly Monitor"
     owner: "testuser"
     description: "This monitor checks the monthly transactions"
+    prior_notification_time_period: "day"
     communication_channel: "email"
     monitor type: "Transaction"
     schedule: "0 5 1 * * "  # 1st day of the month, at 5:00 AM
     sql_file: "spend_patterns.sql"
     database: 'sample.db'
+    columns:
+      - "account_id"
+      - "month_yt"
+      - "avg_monthly_transaction_amount"
+    monitor_run_date: '' # This can be left empty or removed if you want to use a default/prompt
+    recipients:
+      - "testuser@example.com"
+  - name: "Spend Monitor"
+    owner: "testuser"
+    description: "This monitor checks the monthly transactions"
+    prior_notification_time_period: "month"
+    communication_channel: "email"
+    monitor type: "Transaction"
+    schedule: "0 5 * * * "  # Every day at 5:00 AM
+    sql_file: "cumulative_spend.sql"
+    database: 'sample.db'
+    columns:
+      - "account_id"
+      - "total_spend"
     monitor_run_date: '' # This can be left empty or removed if you want to use a default/prompt
     recipients:
       - "testuser@example.com"
