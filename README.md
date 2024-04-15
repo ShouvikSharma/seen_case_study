@@ -65,3 +65,24 @@ After setting up the required libraries and functions, this document provides an
 - **dependencies.sh**: A shell script file that automates the installation of all required libraries.
 
 - **requirements.txt**: Lists all the Python libraries needed for the project. Use this file to install dependencies via pip.
+
+
+### Configuration File (monitors.yaml)
+
+- The `monitors.yaml` file is essential for defining the behavior of various monitoring tasks. Each monitor defined in this file contains several properties that dictate how each task should operate. Below is an explanation of the key properties used within each monitor configuration:
+
+  - `name`: A unique identifier for the monitor.
+  - `owner`: The owner or responsible party for the monitor.
+  - `description`: A brief description of what the monitor does.
+  - `communication_channel`: The method used to communicate the results (e.g., email, Jira).
+  - `monitor type`: The type of monitoring being performed (e.g., Transaction, Monthly Review).
+  - `schedule`: The schedule on which the monitor runs, specified in cron format.
+  - `sql_file`: The SQL file that contains the query to execute.
+  - `prior_notification_time_period`: Specifies the time period to check before sending a new notification to avoid duplicates.
+  - `database`: The database file to connect to when executing the SQL query.
+  - `columns`: A list of columns that are expected to be in the result set of the SQL query.
+  - `monitor_run_date`: Optionally specifies a fixed date to run the monitor query; if empty, the current date is used.
+  - `recipients`: A list of email addresses to which the notifications should be sent.
+
+- This YAML configuration allows for precise control over monitoring and notification mechanisms based on varying requirements, enabling both daily transaction checks and specialized monitoring such as monthly spend patterns.
+
