@@ -53,6 +53,21 @@ python main.py
   
   ```python main.py "Transaction Monitor"```
 
+
+  ## Prior Notification Time Period
+
+- The `prior_notification_time_period` property in the monitor configuration is crucial for managing the frequency of notifications sent to avoid redundancy. This property defines a specific timeframe (e.g., daily, weekly, monthly) during which a notification for the same monitor should not be sent again if it has already been triggered.
+
+### Configuration
+- Set this property in the `monitors.yaml` file for each monitor as needed based on the desired alert frequency. Here is a basic example of how it might look in a YAML configuration:
+
+  ```yaml
+  monitors:
+    - name: TransactionAlertMonitor
+      description: Sends alerts for high-value transactions.
+      prior_notification_time_period: 'monthly'
+      ...
+
 ## Contributing 
 
 ### 1. Create a git branch
