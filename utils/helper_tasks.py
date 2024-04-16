@@ -2,13 +2,37 @@ import sqlite3
 import os
 import pandas as pd
 from datetime import datetime, timedelta
+import time
+import pyarrow
+import pyarrow.flight as flight
 
 class DateHelpers:
+
     def __init__(self, monitor_config):
         self.monitor_run_date = monitor_config.get('monitor_run_date')
         self.query_name = monitor_config.get('sql_file')
         self.database_name = monitor_config.get('database')
         self.database_path = os.path.join(os.getcwd(), 'database', self.database_name)
+
+    def retry(times, exceptions):
+        def decorator(func):
+            def newfn(*args, **kwargs):
+                attempt = 0
+                while attempt < times:
+                    try:
+                        return func(*args, **kwargs)
+                    except exceptions:
+                        print(
+                            f"ERROR - Exception thrown when attempting to run {func}, attempt {attempt} of {times}"
+                        )
+                        print(f"Retrying in 3 minutes...")
+                        time.sleep(180)
+                        attempt += 1
+                return func(*args, **kwargs)
+
+            return newfn
+
+        return decorator
 
     def date_parameter(self):
         if self.monitor_run_date == '':
@@ -16,6 +40,7 @@ class DateHelpers:
         else:
             return datetime.strptime(self.monitor_run_date, '%Y-%m-%d').date().strftime('%Y-%m-%d')
 
+    @retry(times=2, exceptions=(pyarrow._flight.FlightCancelledError))
     def get_sql_data(self):
         with sqlite3.connect(self.database_path) as conn:
             query_path = os.path.join(os.getcwd(), 'scripts', self.query_name)
