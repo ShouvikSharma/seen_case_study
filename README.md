@@ -34,6 +34,17 @@ chmod +x dependencies.sh
 ./dependencies.sh
 ```
 
+### 4. Set the monitor specific parameters in the .yaml file
+If we want to manually input a run date for a specific monitor then we can update the monitors.yaml, and set the run_type as manual.
+
+```bash
+run_type: "manual" 
+```
+Then we can run the main script with a simple command in the terminal.
+```bash
+python main.py
+```
+
 
 ## Contributing 
 
