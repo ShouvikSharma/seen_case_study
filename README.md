@@ -108,3 +108,20 @@ chmod +x dependencies.sh
    |-- helper_tasks.py
    |-- notification_manager.py
 ```
+
+# Transaction Database Query Tests 
+
+## Overview
+- This script tests SQL queries on an SQLite in-memory database focusing on transaction data.
+- It is built using Python's `unittest` framework.
+
+## Requirements
+- Python 3.x
+- `sqlite3` module
+- `pandas` library
+
+## Running Tests
+- Execute the test suite via the command line:
+  ```bash
+  pytest
+  ```
