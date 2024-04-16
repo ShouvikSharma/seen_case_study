@@ -1,3 +1,9 @@
+# Monitor Processing Script Instruction Manual
+
+## Overview
+This manual provides detailed instructions on how to use the Python script designed for processing data monitors. The script automates data queries, validates results, and manages notifications based on configurations specified in a YAML file.
+
+
 ## Setup
 
 These installation instructions assume that you have [Python 3](https://www.python.org/downloads/)
@@ -43,7 +49,7 @@ chmod +x dependencies.sh
 # Project Instructions
 
 ## Overview
-- After setting up the required libraries and functions, this document    provides an overview of the code structure and explains how to use the provided scripts and database.
+- After setting up the required libraries and functions, this document   provides an overview of the code structure and explains how to use the provided scripts and database.
 
 - This manual provides instructions on how to use the Python script designed for processing monitors based on a configurable YAML file. The script performs data queries, validates results, and sends notifications according to specific monitor configurations.
 
@@ -82,12 +88,6 @@ chmod +x dependencies.sh
   - `recipients`: A list of email addresses to which the notifications should be sent.
 
 - This YAML configuration allows for precise control over monitoring and notification mechanisms based on varying requirements, enabling both daily transaction checks and specialized monitoring such as monthly spend patterns.
-
-
-# Monitor Processing Script Instruction Manual
-
-## Overview
-This manual provides detailed instructions on how to use the Python script designed for processing data monitors. The script automates data queries, validates results, and manages notifications based on configurations specified in a YAML file.
 
 ## Requirements
 - Python 3.x
