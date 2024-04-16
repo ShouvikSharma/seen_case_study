@@ -98,6 +98,7 @@ chmod +x dependencies.sh
 ## Project Structure
 - Ensure your project directory is structured as follows:
 
+```bash
 /project
 |-- main_script.py   (the main Python script)
 |-- monitors.yaml    (YAML configuration file)
@@ -106,3 +107,4 @@ chmod +x dependencies.sh
 /-- /utils
    |-- helper_tasks.py
    |-- notification_manager.py
+```
