@@ -3,6 +3,7 @@ import yaml
 import os
 from utils.helper_tasks import DateHelpers
 from utils.notification_manager import NotificationManager
+import sys
 import datetime
 
 def process_monitors(config, db_connection, monitor_name=None):
@@ -50,12 +51,15 @@ def process_monitors(config, db_connection, monitor_name=None):
         print('\n')
 
 def main():
+
+    monitor_name = sys.argv[1] if len(sys.argv) > 1 else None
+
     with open("monitors.yaml", "r") as file:
         config = yaml.safe_load(file)
 
     # Process each monitor defined in the YAML configuration
     conn = sqlite3.connect(os.path.join(os.getcwd(), 'database', 'sample.db'))
-    process_monitors(config, conn ,monitor_name=None) 
+    process_monitors(config, conn ,monitor_name=monitor_name) 
 
     # Close the connection
     conn.close()
