@@ -50,10 +50,8 @@ python main.py
 - To execute a specific monitor by name, provide the monitor's name as an argument when calling the `process_monitors` function within the `main` function. Replace `monitor_name=None` with `monitor_name='YourMonitorName'` where `'YourMonitorName'` is the name of the monitor you wish to run. This allows for targeted processing of individual monitors, which can be useful for testing or specific data monitoring needs.
 
   Example:
-  ```python main.py "Transaction Monitor"
-  # Replace 'YourMonitorName' with the actual name of the monitor you want to run
-  process_monitors(config, conn, monitor_name='YourMonitorName')
-
+  
+  ```python main.py "Transaction Monitor"```
 
 ## Contributing 
 
