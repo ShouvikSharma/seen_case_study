@@ -97,6 +97,7 @@ python main.py
   - `columns`: A list of columns that are expected to be in the result set of the SQL query.
   - `monitor_run_date`: Optionally specifies a fixed date to run the monitor query; if empty, the current date is used.
   - `recipients`: A list of email addresses to which the notifications should be sent.
+  - `run_type`: Specifies whether the monitor run is manual or regular, allowing for flexibility in execution.
 
 - This YAML configuration allows for precise control over monitoring and notification mechanisms based on varying requirements, enabling both daily transaction checks and specialized monitoring such as monthly spend patterns.
 
