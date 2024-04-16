@@ -1,8 +1,3 @@
-# dbt-silver
-
-This repository contains a seen case study project that defines "Silver" data models that are built in Databricks Unity Catalog. Learn more about how we model our data at Avant in [_Medallion Architecture + dbt_](https://avantinc.atlassian.net/wiki/spaces/DL/pages/3132522555/Medallion+Architecture+dbt). Continue reading to learn how to contribute to the `dbt_silver` project.
-
-
 ## Setup
 
 These installation instructions assume that you have [Python 3](https://www.python.org/downloads/)
@@ -48,7 +43,9 @@ chmod +x dependencies.sh
 # Project Instructions
 
 ## Overview
-After setting up the required libraries and functions, this document provides an overview of the code structure and explains how to use the provided scripts and database.
+- After setting up the required libraries and functions, this document    provides an overview of the code structure and explains how to use the provided scripts and database.
+
+- This manual provides instructions on how to use the Python script designed for processing monitors based on a configurable YAML file. The script performs data queries, validates results, and sends notifications according to specific monitor configurations.
 
 ## Directory and File Structure
 
@@ -86,3 +83,26 @@ After setting up the required libraries and functions, this document provides an
 
 - This YAML configuration allows for precise control over monitoring and notification mechanisms based on varying requirements, enabling both daily transaction checks and specialized monitoring such as monthly spend patterns.
 
+
+# Monitor Processing Script Instruction Manual
+
+## Overview
+This manual provides detailed instructions on how to use the Python script designed for processing data monitors. The script automates data queries, validates results, and manages notifications based on configurations specified in a YAML file.
+
+## Requirements
+- Python 3.x
+- Libraries: SQLite3, PyYAML, Pandas
+- `sample.db` database file located in a `database` directory
+- Python scripts `helper_tasks.py` and `notification_manager.py` in the `utils` directory
+
+## Project Structure
+- Ensure your project directory is structured as follows:
+
+/project
+|-- main_script.py   (the main Python script)
+|-- monitors.yaml    (YAML configuration file)
+/-- /database
+   |-- sample.db    (SQLite database)
+/-- /utils
+   |-- helper_tasks.py
+   |-- notification_manager.py
