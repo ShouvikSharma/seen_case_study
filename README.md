@@ -1,4 +1,4 @@
-# Monitor Processing Script Instruction Manual
+# Monitors Processing Script Instruction Manual
 
 ## Overview
 This manual provides detailed instructions on how to use the Python script designed for processing data monitors. The script automates data queries, validates results, and manages notifications based on configurations specified in a YAML file.
