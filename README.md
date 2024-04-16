@@ -54,7 +54,7 @@ python main.py
   ```python main.py "Transaction Monitor"```
 
 
-  ## Prior Notification Time Period
+## Prior Notification Time Period
 
 - The `prior_notification_time_period` property in the monitor configuration is crucial for managing the frequency of notifications sent to avoid redundancy. This property defines a specific timeframe (e.g., daily, weekly, monthly) during which a notification for the same monitor should not be sent again if it has already been triggered.
 
