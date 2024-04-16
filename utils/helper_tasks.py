@@ -4,6 +4,7 @@ import pandas as pd
 from datetime import datetime, timedelta
 import time
 import pyarrow
+import pyarrow.flight as flight
 
 class DateHelpers:
 
