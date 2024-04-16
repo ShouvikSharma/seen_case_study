@@ -3,11 +3,22 @@ import yaml
 import os
 from utils.helper_tasks import DateHelpers
 from utils.notification_manager import NotificationManager
+import datetime
 
 def process_monitors(config, db_connection, monitor_name=None):
     for monitor in config["monitors"]:
+
         if monitor_name is not None and monitor['name'] != monitor_name:
             continue 
+
+        # Handle manual run date entry
+        if monitor['run_type'] == "manual":
+            monitor['monitor_run_date'] = input(f"Enter the run date for {monitor['name']} (YYYY-MM-DD): ")
+            try:
+                datetime.datetime.strptime(monitor['monitor_run_date'], "%Y-%m-%d")
+            except ValueError:
+                print("Invalid date format! Please use YYYY-MM-DD format.")
+                continue
 
         # Load the underlying sql script
         datahelpers = DateHelpers(monitor)
