@@ -70,6 +70,54 @@ chmod +x dependencies.sh
 - **requirements.txt**: Lists all the Python libraries needed for the project. Use this file to install dependencies via pip.
 
 
+# Fraud Analysis Tasks Explanation
+
+## Overview
+This document outlines the solutions and considerations for various fraud analysis tasks as requested by the business requirements. Each task involves specific triggers for notifications and reporting, detailed below.
+
+### Q.1 - JIRA Ticket Creation for High-Value Transactions
+
+#### Requirement
+As a fraud analyst, every day I want JIRA tickets to be automatically created for all transactions above $300 in the previous day. The tickets will be manually reviewed.
+
+#### Implementation Details
+- **SQL Query**: Fetches all transactions exceeding $300 from the previous day.
+- **Notification Mechanism**: Each qualifying transaction generates a JIRA ticket for manual review.
+
+#### Considerations
+- **Multiple Transactions**: Currently, every transaction over $300 results in a JIRA ticket.
+- **Potential Requirement Clarification**:
+  - **Single Ticket per Account**: Need to clarify with the business if multiple transactions for a single account should be consolidated into a single ticket or if separate tickets should be issued per transaction.
+
+### Q.2 - Monthly Email Notification for Deviated Spending Patterns
+
+#### Requirement
+As a fraud analyst, I want to receive an email every month that includes a list of accounts that have significantly deviated from their previous spending patterns.
+
+#### Implementation Details
+- **Spending Pattern Calculation**: Computes a 2-month moving average of account spending and compares it with the current month's average spend.
+- **Notification Trigger**: If there is a change of more than 70% (increase or decrease) in average spending, the account is flagged.
+
+#### Considerations
+- **Definition of 'Significant Deviation'**: The threshold of 70% change is used to determine significant deviations. This parameter can be adjusted based on further analysis or business feedback.
+
+### Q.3 - Slack Notifications for High Monthly Spending
+
+#### Requirement
+As a fraud analyst, I want to receive Slack notifications that list all accounts that have cumulatively spent more than $500 in the current month. I do not want to be notified more than once for a given account in a month.
+
+#### Implementation Details
+- **Calculation of Total Spend**: Accounts with a total spend of over $500 in the current month are identified.
+- **Notification Control**: Utilizes the `notification_logs` table and `prior_notification_time_period` set to 'month' to prevent duplicate notifications within the same month.
+
+#### Considerations
+- **Notification Frequency**: Ensures that notifications for high spending accounts are not repeated within the same month, reducing redundancy and focusing on new or continuing high spending activities.
+
+## Conclusion
+These implementations cater to the specific needs of fraud monitoring by using automated notifications and detailed reporting based on predefined criteria. Adjustments and clarifications may be needed as per business feedback to ensure accuracy and relevance of the information provided.
+
+
+
 ### Configuration File (monitors.yaml)
 
 - The `monitors.yaml` file is essential for defining the behavior of various monitoring tasks. Each monitor defined in this file contains several properties that dictate how each task should operate. Below is an explanation of the key properties used within each monitor configuration:
