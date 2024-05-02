@@ -3,7 +3,7 @@ monitors:
     owner: "testuser"
     description: "This monitor checks the daily transactions"
     communication_channel: "jira"
-    monitor type: "Transaction"
+    monitor_type: "Transaction"
     schedule: "0 5 * * *"  # Every day at 5:00 AM
     sql_file: "transactions.sql"
     prior_notification_time_period: "day"
@@ -22,7 +22,7 @@ monitors:
     description: "This monitor checks the monthly transactions"
     prior_notification_time_period: "day"
     communication_channel: "email"
-    monitor type: "Transaction"
+    monitor_type: "Transaction"
     schedule: "0 5 1 * * "  # 1st day of the month, at 5:00 AM
     sql_file: "spend_patterns.sql"
     database: 'sample.db'
@@ -39,7 +39,7 @@ monitors:
     description: "This monitor checks the monthly transactions"
     prior_notification_time_period: "month"
     communication_channel: "email"
-    monitor type: "Transaction"
+    monitor_type: "Transaction"
     schedule: "0 5 * * * "  # Every day at 5:00 AM
     sql_file: "cumulative_spend.sql"
     database: 'sample.db'

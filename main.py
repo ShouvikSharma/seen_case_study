@@ -4,9 +4,11 @@ import os
 from utils.helper_tasks import DateHelpers
 from utils.notification_manager import NotificationManager
 import sys
+from typing import Any, Dict
 import datetime
+from dataclasses import dataclass
 
-def process_monitors(config, db_connection, monitor_name=None):
+def process_monitors(config: Dict[str,Any], db_connection:sqlite3.Connection, monitor_name: str =None) -> None:
     for monitor in config["monitors"]:
 
         if monitor_name is not None and monitor['name'] != monitor_name:
@@ -31,11 +33,14 @@ def process_monitors(config, db_connection, monitor_name=None):
         print("Initial Audience size:", len(monitor_df))
 
         # Validate the dataframe
+        valid: bool
+        error_message: str
         valid, error_message = datahelpers.validate_dataframe(monitor_df, monitor)
         if not valid:
             print(error_message)
             continue
-
+        
+        
         # Update monitor_df to exclude account_ids where notification has already been sent in the specified period
         monitor_df = monitor_df[monitor_df['account_id'].apply(lambda account_id: not datahelpers.has_notification_been_sent_in_period(os.path.join(os.getcwd(), 'database', 'sample.db'), monitor['name'], account_id, period = monitor.get('prior_notification_time_period')))]
 
@@ -55,7 +60,7 @@ def main():
     monitor_name = sys.argv[1] if len(sys.argv) > 1 else None
 
     with open("monitors.yaml", "r") as file:
-        config = yaml.safe_load(file)
+        config: Dict[str,Any] = yaml.safe_load(file)
 
     # Process each monitor defined in the YAML configuration
     conn = sqlite3.connect(os.path.join(os.getcwd(), 'database', 'sample.db'))
