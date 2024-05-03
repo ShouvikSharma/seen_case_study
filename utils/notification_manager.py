@@ -30,33 +30,47 @@ class NotificationManager:
         self.dataframe = dataframe
         self.monitor_name = monitor_name
 
-    def send_notification(self, subject, message, channel=None):
+    def send_notification(self, subject: str, message: str, channel: str = None) -> str:
         """General method to send notifications based on the communication channel."""
         account_ids = self.dataframe['account_id'].unique()
+        print('get general accounts',len(account_ids))
         messages = []
 
         # Generate a message for each account ID
         for account_id in account_ids:
             account_specific_data = self.dataframe[self.dataframe['account_id'] == account_id]
+            print('get general accounts',len(account_specific_data))
+            print('get general accounts',len(account_id))
             message = f"Alert for account {account_id}: {len(account_specific_data)} events recorded."
             messages.append((account_id, message))
         
-        for account_id, message in messages:
+            # Initialize a list to store the results of communication attempts
+            results = []
 
-            # Log the notification to the database
-            log_message = f"{subject} - {message}"
-            log_notification_to_db(self.db_connection, self.communication_channel, self.user, log_message, account_id, self.monitor_name)
+            for account_id, message in messages:
+                print(message)
+                
+                # Log the notification to the database
+                log_message = f"{subject} - {message}"
+                log_notification_to_db(self.db_connection, self.communication_channel, self.user, log_message, 
+                                    account_id, self.monitor_name)
 
-            # Depending on the communication channel, send the notification
-            if self.communication_channel == "email":
-                return self.send_email(subject, message)
-            elif self.communication_channel == "slack":
-                return self.send_slack(channel, message)
-            elif self.communication_channel == "jira":
-                return self.create_jira_ticket(subject, message)
-            else:
-                print(f"Communication channel {self.communication_channel} is not supported.")
-                return "Unsupported communication channel"
+                # Depending on the communication channel, send the notification
+                if self.communication_channel == "email":
+                    result = self.send_email(subject, message)
+                elif self.communication_channel == "slack":
+                    result = self.send_slack(channel, message)
+                elif self.communication_channel == "jira":
+                    result = self.create_jira_ticket(subject, message)
+                else:
+                    print(f"Communication channel {self.communication_channel} is not supported.")
+                    result = "Unsupported communication channel"
+                
+                # Append the result to the list of results
+                results.append(result)
+
+        # Return the list of results after the loop has completed
+        return results
 
     def send_email(self, subject, message):
         """Stub method to simulate sending an email."""
