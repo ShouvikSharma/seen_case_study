@@ -39,8 +39,6 @@ class NotificationManager:
         # Generate a message for each account ID
         for account_id in account_ids:
             account_specific_data = self.dataframe[self.dataframe['account_id'] == account_id]
-            print('get general accounts',len(account_specific_data))
-            print('get general accounts',len(account_id))
             message = f"Alert for account {account_id}: {len(account_specific_data)} events recorded."
             messages.append((account_id, message))
         
@@ -48,7 +46,6 @@ class NotificationManager:
             results = []
 
             for account_id, message in messages:
-                print(message)
                 
                 # Log the notification to the database
                 log_message = f"{subject} - {message}"
