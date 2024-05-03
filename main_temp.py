@@ -9,7 +9,6 @@ import os
 import datetime
 from utils.helper_tasks import DateHelpers
 
-
 @dataclass
 class MonitorConfig:
     name: str
@@ -42,29 +41,16 @@ def process_monitors(config: List[MonitorConfig], monitor_name: str, conn: sqlli
             except ValueError:
                 print("Invalid date format! Please use YYYY-MM-DD format.")
                 continue
-
-            # Load the underlying sql script
-            datahelpers = DateHelpers(monitor)
-            monitor_df = datahelpers.get_sql_data()
-
-
-            try:
-                datetime.datetime.strptime(monitor.monitor_run_date,
-                                        '%Y-%m-%d')
-            except:
-                ValueError
-                print("Please enter a valid date in the format 'YYYY-MM-DD, for monitor {monitor.name}")
-                continue
             
             ### Get the data
             datahelpers = DateHelpers(monitor)
             monitor_df = datahelpers.get_sql_data()
 
-
             # validate the dataframe
             valid: bool
             error_message: str  
-            def validate_dataframe(self,monitor_df,monitor):
+            valid = datahelpers.validate_dataframe()
+
 
 
 

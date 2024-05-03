@@ -5,6 +5,35 @@ import yaml
 from main import process_monitors, DateHelpers
 from unittest.mock import patch
 
+## Add
+## 
+
+class TestProcessMonitors(unittest.TestCase):
+    '''
+    Class for testing different components of the process monitor program
+    ''' 
+    @classmethod
+    def setUpClass(cls) -> None:
+        with open("monitors.yaml","r") as file:
+            cls.config = yaml.safe_load(file)
+
+    @patch('builtins.input',side_effect = ['2023-01-01'])
+    def test_manual_run_date_entry(self,mock_input):
+        # mock database connect
+        conn = sqlite3.connect(':memory')
+
+    @patch('builtins.input',side_effect = ['2023-01-01'])
+    def test_manual_run_date(self,mock_input) -> None:
+
+        # mock database connect
+        conn =  sqlite3.connect(':memory')
+
+        conn.
+
+                               
+
+
+
 class TestProcessMonitors(unittest.TestCase):
     '''
     Class for testing different components of the process monitor program.
@@ -49,11 +78,25 @@ class TestProcessMonitors(unittest.TestCase):
         self.assertIsNotNone(monitor_df)
         self.assertNotEqual(len(monitor_df), 0)  # Assuming the query returns some data
 
+if __name__ == '__main__':
+    unittest.main()
+
+
+class TestCode(unittest.TestCase):
+
     @classmethod
     def setUpClass(cls) -> None:
         with open("monitors.yaml","r") as file:
-            cls.config = yaml.safe_load(file)
+            cls.config = yaml.safe_load()
 
-
-if __name__ == '__main__':
-    unittest.main()
+    @patch('builtins.input',side_effect = ['2024-01-01'])
+    def test_sql_get_data(self):
+        monitor = {
+            'sql_file': 'sample.sql'
+        }
+        
+        datahelpers = DateHelpers(monitor)
+        monitor_df = datahelpers.get_sql_data()
+        
+        self.assertIsNotNone(monitor_df)
+        self.assertNotEqual(monitor_df)
