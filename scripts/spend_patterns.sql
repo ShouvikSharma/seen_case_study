@@ -30,4 +30,4 @@ select
 from 
 moving_avg_cte
 WHERE
-  ABS((avg_monthly_transaction_amount - moving_avg_monthly_transaction_amount) / moving_avg_monthly_transaction_amount) > 0.70  -- Adjust this value for different thresholds
+  ABS((avg_monthly_transaction_amount - moving_avg_monthly_transaction_amount) / moving_avg_monthly_transaction_amount) > 5  -- Adjust this value for different thresholds
