@@ -3,9 +3,20 @@ monitors:
     owner: "testuser"
     description: "This monitor checks the daily transactions"
     communication_channel: "jira"
-    monitor type: "Transaction"
+    monitor_type: "Transaction"
     schedule: "0 5 * * *"  # Every day at 5:00 AM
-    sql_file: "transactions.sql"
+    sql: |
+      SELECT 
+          customer_id,
+          account_id,
+          merchant_name,
+          transaction_date
+      FROM
+          transactions
+      WHERE
+          ABS(transaction_amount) > 300
+          AND 
+          DATE('{date}', '-1 day') = DATE(transaction_date)
     prior_notification_time_period: "day"
     database: 'sample.db'
     run_type: "regular"  # Can be "regular" or "manual"
@@ -14,39 +25,6 @@ monitors:
       - "account_id"
       - "transaction_date"
       - "merchant_name"
-    monitor_run_date: '' # This can be left empty or removed if you want to use a default/prompt
-    recipients:
-      - "testuser@example.com"
-  - name: "Monthly Monitor"
-    owner: "testuser"
-    description: "This monitor checks the monthly transactions"
-    prior_notification_time_period: "day"
-    communication_channel: "email"
-    monitor type: "Transaction"
-    schedule: "0 5 1 * * "  # 1st day of the month, at 5:00 AM
-    sql_file: "spend_patterns.sql"
-    database: 'sample.db'
-    run_type: "regular"  # Can be "regular" or "manual"    
-    columns:
-      - "account_id"
-      - "month_yt"
-      - "avg_monthly_transaction_amount"
-    monitor_run_date: '' # This can be left empty or removed if you want to use a default/prompt
-    recipients:
-      - "testuser@example.com"
-  - name: "Spend Monitor"
-    owner: "testuser"
-    description: "This monitor checks the monthly transactions"
-    prior_notification_time_period: "month"
-    communication_channel: "email"
-    monitor type: "Transaction"
-    schedule: "0 5 * * * "  # Every day at 5:00 AM
-    sql_file: "cumulative_spend.sql"
-    database: 'sample.db'
-    run_type: "manual"  # Can be "regular" or "manual"
-    columns:
-      - "account_id"
-      - "total_spend"
     monitor_run_date: '' # This can be left empty or removed if you want to use a default/prompt
     recipients:
       - "testuser@example.com"
